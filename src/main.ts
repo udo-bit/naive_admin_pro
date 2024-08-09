@@ -5,6 +5,7 @@ import "@unocss/reset/tailwind.css"
 import "uno.css";
 import router from "./routes"
 import {createPinia} from "pinia";
+import "~/assets/styles/index.css"
 
 const meta = document.createElement('meta')
 meta.name = 'naive-ui-style'

@@ -5,7 +5,10 @@
 
   <n-config-provider>
     <app-provider>
-      <router-view></router-view>
+      <div class="">
+        <router-view></router-view>
+      </div>
+
     </app-provider>
   </n-config-provider>
 </template>

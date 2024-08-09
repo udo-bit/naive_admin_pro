@@ -1,22 +1,31 @@
 import {RouteRecordRaw} from "vue-router";
+import {Layout} from "../layouts";
 
 const staticRoutes:RouteRecordRaw[]=[
     {
-        path: '/',
-        component:()=>import("../pages/index.vue"),
+        path:'/',
         name:'index',
-        meta:{
-            title:'首页'
+        component:Layout,
+        redirect:'/home',
+        children:[
+            {
+                path:'/home',
+                component:()=>import("../pages/index.vue"),
+                meta:{
+                    title:'Home',
+                }
+            },
+            {
+                path:'workspace',
+                component:()=>import("../pages/workspace/index.vue"),
+                name:'workspace',
+                meta:{
+                    title:'工作台'
+                }
+            }
+        ]
 
-        }
+
     },
-    {
-        path:'/workspace',
-        component:()=>import("../pages/workspace/index.vue"),
-        name:'workspace',
-        meta:{
-            title:'工作台'
-        }
-    }
 ]
 export default staticRoutes
