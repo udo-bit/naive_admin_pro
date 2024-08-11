@@ -10,6 +10,13 @@ import {
 } from 'unocss'
 
 export default defineConfig({
+    safelist: [
+        'bg-[var(--base-color)]',
+        'bg-[var(--inverted-color)]',
+        'h-75%',
+        'h-100%',
+        'bottom-0',
+    ],
     shortcuts: [],
     presets: [
         presetUno(), // 默认wind预设
