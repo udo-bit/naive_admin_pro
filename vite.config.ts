@@ -13,7 +13,7 @@ export default defineConfig({
         AutoImport({
             imports: [
                 'vue',
-                // 'vue/macros',
+                'vue/macros',
                 'vue-router',
                 'vue-i18n',
                 '@vueuse/core',

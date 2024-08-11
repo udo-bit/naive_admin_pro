@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<{
   headerHeight?: number
   logo?: string
   title?: string
+  inverted?: boolean;
 }>(), {
   headerHeight: 48,
 });
@@ -13,7 +14,7 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`);
 
 <template>
   <n-layout class="h-screen" style="--n-color:var(--pro-admin-layout-content-bg)">
-    <n-layout-header inverted class="pro-admin-mix-layout-header flex items-center justify-between px-4">
+    <n-layout-header :inverted="inverted" class="pro-admin-mix-layout-header flex items-center justify-between px-4">
       <div class="flex items-center">
         <Logo :src="logo"/>
         <Title :title="title"/>

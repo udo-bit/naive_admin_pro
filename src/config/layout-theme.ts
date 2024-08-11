@@ -9,7 +9,10 @@ export interface LayoutTheme {
     sideCollapsedWidth?: number;
     showSiderTrigger: boolean | 'bar' | 'arrow-circle';
     collapsed: boolean;
+    layoutStyle: 'dark' | 'light' | 'inverted' | string;
+
 }
+
 
 export const layoutThemeConfig: LayoutTheme = {
     title: 'Naive Admin Pro',
@@ -20,5 +23,13 @@ export const layoutThemeConfig: LayoutTheme = {
     sideCollapsedWidth: 48,
     showSiderTrigger: 'bar',
     collapsed: false,
+    layoutStyle: 'dark',
 };
+
+export interface LayoutType {
+    key: 'mix' | 'side' | 'top';
+    id: string;
+    inverted?: boolean;
+    title?: string;
+}
 

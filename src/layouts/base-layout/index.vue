@@ -8,7 +8,7 @@ import {useQueryBreakpoints} from "~/composables/query-breakpoints.ts";
 import SettingDrawer from "~/layouts/setting-drawer/index.vue";
 
 const appStore = useAppStore();
-const {layout, visible,} = storeToRefs(appStore);
+const {layout, visible, layoutList, layoutStyleList} = storeToRefs(appStore);
 const {isMobile, isPad, isDesktop} = useQueryBreakpoints();
 
 watchEffect(() => {
@@ -63,6 +63,7 @@ watchEffect(() => {
         :show-sider-trigger="layout.showSiderTrigger"
         :side-width="layout.sideWidth"
         :side-collapsed-width="layout.sideCollapsedWidth"
+        :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
         <div>
@@ -77,6 +78,7 @@ watchEffect(() => {
         v-if="layout.layout === 'top'"
         :logo="layout.logo"
         :title="layout.title"
+        :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
         <div>
@@ -86,7 +88,12 @@ watchEffect(() => {
       <router-view></router-view>
     </TopLayout>
   </template>
-  <SettingDrawer v-model:layout="layout.layout"/>
+  <SettingDrawer
+      v-model:layout="layout.layout"
+      v-model:layout-style="layout.layoutStyle"
+      :layout-list="layoutList"
+      :layout-style-list="layoutStyleList"
+  />
 </template>
 
 <style scoped>
