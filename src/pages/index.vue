@@ -1,25 +1,34 @@
 <script lang="ts" setup>
-import type {LayoutTheme} from '~/config/layout-theme'
 
-const appStore = useAppStore()
-const onSwitch = (theme: LayoutTheme['layoutStyle']) => {
-  appStore.updateLayoutStyle(theme)
-  if (theme === 'dark')
-    document.documentElement.className = 'dark'
-  else
-    document.documentElement.removeAttribute('class')
+
+const onRequest1 = () => {
+  useGet('/').then(res => {
+    console.log(res)
+  })
 }
+const onRequest2 = () => {
+  useGet('/403').then(res => {
+    console.log(res)
+  })
+}
+
 </script>
 
 <template>
   <div>
     <n-space>
-      <n-button @click="onSwitch('light')">
-        浅色
+      <n-button @click="onRequest1">
+        200
       </n-button>
-      <n-button @click="onSwitch('dark')">
-        深色
+
+      <n-button @click="onRequest2">
+        403
       </n-button>
+
     </n-space>
   </div>
 </template>
+
+<style scoped>
+
+</style>
