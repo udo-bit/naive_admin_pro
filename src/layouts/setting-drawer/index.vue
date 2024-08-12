@@ -87,9 +87,15 @@ const onChangeStyle = (val: string) => {
       </SettingContainer>
       <SettingContainer title="主题模式">
         <n-space size="large">
-          <template v-for="{id,key,title,inverted} in layoutStyleList" :key="id">
-            <CheckboxLayout :inverted="inverted" :layout="key" :title="title" :checked="id === layoutStyle"
-                            @click="onChangeStyle(id)"/>
+          <template v-for="{id,key,title,inverted,dark} in layoutStyleList" :key="id">
+            <CheckboxLayout :inverted="inverted"
+                            :layout="key"
+                            :title="title"
+                            :dark="dark"
+                            :checked="id === layoutStyle"
+                            @click="onChangeStyle(id)"
+
+            />
           </template>
         </n-space>
       </SettingContainer>

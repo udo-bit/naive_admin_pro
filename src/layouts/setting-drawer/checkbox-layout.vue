@@ -6,13 +6,15 @@ const props = withDefaults(defineProps<{
   inverted?: boolean
   checked?: boolean
   title?: string
+  dark?:boolean
 }>(), {
   inverted: false,
   layout: 'top',
 })
 defineEmits(['click'])
+
 const headerClass = computed(() => {
-  if (props.layout === 'mix' || props.layout === 'top') {
+  if (props.layout === 'mix' || props.layout === 'top' || props.dark) {
     return [
       'bg-[var(--inverted-color)]',
     ]
@@ -35,7 +37,7 @@ const siderClass = computed(() => {
   if (props.layout === 'side') {
     return [
       'h-100%',
-      `bg-[var(${props.inverted ? '--inverted-color' : '--base-color'})]`,
+      `bg-[var(--${(props.inverted || props.dark) ? 'inverted' : 'base'}-color)]`,
     ]
   }
   return []

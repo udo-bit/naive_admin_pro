@@ -10,6 +10,7 @@ export interface LayoutTheme {
     showSiderTrigger: boolean | 'bar' | 'arrow-circle';
     collapsed: boolean;
     layoutStyle: 'dark' | 'light' | 'inverted' | string;
+    dark?:boolean,
 
 }
 
@@ -23,7 +24,7 @@ export const layoutThemeConfig: LayoutTheme = {
     sideCollapsedWidth: 48,
     showSiderTrigger: 'bar',
     collapsed: false,
-    layoutStyle: 'dark',
+    layoutStyle: 'mix',
 };
 
 export interface LayoutType {
@@ -31,5 +32,6 @@ export interface LayoutType {
     id: string;
     inverted?: boolean;
     title?: string;
+    dark?:boolean
 }
 

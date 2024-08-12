@@ -64,8 +64,15 @@ const useAppStore = defineStore('app', () => {
                 inverted: true
             })
         } else {
-            updateLayoutStyle('light')
+            if (layout.layoutStyle !== 'dark')
+                updateLayoutStyle('light')
         }
+        list.push({
+            id: 'dark',
+            key: 'side',
+            title: '暗色风格',
+            dark:true
+        })
         return list
     });
 
