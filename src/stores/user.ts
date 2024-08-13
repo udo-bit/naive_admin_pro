@@ -1,14 +1,29 @@
 import {UserAccountLoginParams, userGetInfoApi, UserInfo, userLoginApi, UserMobileLoginParams} from "../api/user.ts";
 import router from "../routes/index"
+import {RouteRecordRaw} from "vue-router";
+import dynamicRoutes, {rootRouter} from "../routes/dynamic-routes.ts";
+
 export const useUserStore = defineStore('user', () => {
     const userInfo = ref<UserInfo>();
     const token = useAuthorization();
     const {message} = useGlobalConfig()
 
-    const setUserInfo = (info: UserInfo|undefined) => {
+    // 动态路由
+    const routerRecords = ref<RouteRecordRaw[]>([])
+
+    const generateRoutes = async () => {
+        const routerRecord = {
+            ...rootRouter,
+            children: dynamicRoutes
+        }
+        routerRecords.value = dynamicRoutes
+        return routerRecord
+    }
+
+    const setUserInfo = (info: UserInfo | undefined) => {
         userInfo.value = info;
     }
-    const setToken = (val: string|null) => {
+    const setToken = (val: string | null) => {
         // @ts-ignore
         token.value = val;
     }
@@ -30,7 +45,7 @@ export const useUserStore = defineStore('user', () => {
     const logout = async () => {
         setToken(null)
         setUserInfo(undefined)
-        message?.success("退出登陆成功",{duration:3000})
+        message?.success("退出登陆成功", {duration: 3000})
         await router.replace({
             path: '/login',
             query: {
@@ -46,7 +61,8 @@ export const useUserStore = defineStore('user', () => {
         setToken,
         login,
         getUserInfo,
-        logout
+        logout,
+        generateRoutes
     }
 
 })

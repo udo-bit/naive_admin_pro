@@ -27,10 +27,20 @@ router.beforeEach(async (to, _from, next) => {
             // 如果用户信息不存在，那么就需要获取用户信息
             try {
                 await userStore.getUserInfo()
+                const routerRecord = await userStore.generateRoutes()
+                // console.log(router.getRoutes())
+                router.addRoute(routerRecord)
+                // console.log(router.getRoutes())
                 if (to.path === loginRoute) {
                     // 跳转至首页
                     next({
                         path: '/',
+                    })
+                    return
+                } else if (routerRecord) {
+                    next({
+                        ...to,
+                        replace: true,
                     })
                     return
                 }

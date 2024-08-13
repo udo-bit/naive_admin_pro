@@ -1,31 +1,16 @@
 import {RouteRecordRaw} from "vue-router";
-import {Layout} from "../layouts";
 
-const staticRoutes:RouteRecordRaw[]=[
+const staticRoutes: RouteRecordRaw[] = [
     {
-        path:'/',
-        name:'index',
-        component:Layout,
-        redirect:'/home',
-        children:[
-            {
-                path:'/home',
-                component:()=>import("../pages/index.vue"),
-                meta:{
-                    title:'Home',
-                }
-            },
-            {
-                path:'workspace',
-                component:()=>import("../pages/workspace/index.vue"),
-                name:'workspace',
-                meta:{
-                    title:'工作台'
-                }
-            }
-        ]
-
-
+        path: '/login',
+        name: 'login',
+        component: () => import('~/pages/login/index.vue'),
     },
+    {
+        path: '/error',
+        name: 'error',
+        component: () => import('~/pages/error/error.vue'),
+    },
+
 ]
 export default staticRoutes
