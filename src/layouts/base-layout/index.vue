@@ -6,6 +6,8 @@ import MobileLayout from '../mobile-layout/index.vue'
 import {useAppStore} from "~/stores/app.ts";
 import {useQueryBreakpoints} from "~/composables/query-breakpoints.ts";
 import SettingDrawer from "~/layouts/setting-drawer/index.vue";
+import RightContent from "~/layouts/base-layout/right-content.vue";
+import {menuOptions} from "~/layouts/composables/menu-data.ts";
 
 const appStore = useAppStore();
 const {layout, visible, layoutList, layoutStyleList} = storeToRefs(appStore);
@@ -32,9 +34,7 @@ watchEffect(() => {
       v-model:visible="appStore.visible"
   >
     <template #headerRight>
-      <div>
-        测试右侧插槽
-      </div>
+      <RightContent/>
     </template>
     <router-view></router-view>
   </MobileLayout>
@@ -47,11 +47,10 @@ watchEffect(() => {
         :side-width="layout.sideWidth"
         :side-collapsed-width="layout.sideCollapsedWidth"
         v-model:collapsed="layout.collapsed"
+        :options="menuOptions"
     >
       <template #headerRight>
-        <div>
-          测试右侧插槽
-        </div>
+        <RightContent/>
       </template>
       <router-view></router-view>
     </MixLayout>
@@ -66,9 +65,7 @@ watchEffect(() => {
         :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
-        <div>
-          测试右侧插槽
-        </div>
+        <RightContent/>
       </template>
 
       <router-view></router-view>
@@ -81,9 +78,7 @@ watchEffect(() => {
         :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
-        <div>
-          测试右侧插槽
-        </div>
+        <RightContent/>
       </template>
       <router-view></router-view>
     </TopLayout>

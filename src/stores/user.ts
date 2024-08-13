@@ -1,12 +1,14 @@
 import {UserAccountLoginParams, userGetInfoApi, UserInfo, userLoginApi, UserMobileLoginParams} from "../api/user.ts";
-
+import router from "../routes/index"
 export const useUserStore = defineStore('user', () => {
     const userInfo = ref<UserInfo>();
     const token = useAuthorization();
-    const setUserInfo = (info: UserInfo) => {
+    const {message} = useGlobalConfig()
+
+    const setUserInfo = (info: UserInfo|undefined) => {
         userInfo.value = info;
     }
-    const setToken = (val: string) => {
+    const setToken = (val: string|null) => {
         // @ts-ignore
         token.value = val;
     }
@@ -25,13 +27,26 @@ export const useUserStore = defineStore('user', () => {
             setUserInfo(data)
     }
 
+    const logout = async () => {
+        setToken(null)
+        setUserInfo(undefined)
+        message?.success("退出登陆成功",{duration:3000})
+        await router.replace({
+            path: '/login',
+            query: {
+                redirect: router.currentRoute.value.path,
+            },
+        })
+    }
+
     return {
         userInfo,
         token,
         setUserInfo,
         setToken,
         login,
-        getUserInfo
+        getUserInfo,
+        logout
     }
 
 })
