@@ -50,3 +50,31 @@ export const userGetInfoUrl = '/user/info'
 export const userGetInfoApi = () => {
     return useGet<any, UserInfo>(userGetInfoUrl)
 }
+
+export interface MenuInfo {
+    // 主键id
+    id: number
+    // 父级id
+    pid?: number
+    // 路由地址
+    path: string
+    // 路由名称
+    name?: string
+    // 路由标题
+    title: string
+    // 路由图标
+    icon?: string
+    // 路由组件
+    component?: string
+    // 路由重定向
+    redirect?: string
+}
+
+// 路由地址
+export const userRoutesUrl = '/user/menus'
+// 调用接口
+export const userRoutesApi = () => {
+    return useGet<any, MenuInfo[]>(userRoutesUrl)
+}
+
+

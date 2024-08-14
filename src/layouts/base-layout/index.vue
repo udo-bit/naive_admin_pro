@@ -7,11 +7,16 @@ import {useAppStore} from "~/stores/app.ts";
 import {useQueryBreakpoints} from "~/composables/query-breakpoints.ts";
 import SettingDrawer from "~/layouts/setting-drawer/index.vue";
 import RightContent from "~/layouts/base-layout/right-content.vue";
-import {menuOptions} from "~/layouts/composables/menu-data.ts";
+// import {menuOptions} from "~/layouts/composables/menu-data.ts";
+import {useUserStore} from "~/stores/user.ts";
 
 const appStore = useAppStore();
 const {layout, visible, layoutList, layoutStyleList} = storeToRefs(appStore);
 const {isMobile, isPad, isDesktop} = useQueryBreakpoints();
+
+const userStore = useUserStore();
+const menuOptions = computed(() => userStore.menuData);
+const {active} = useMenuStateInject()
 
 watchEffect(() => {
   if (isDesktop.value) {
@@ -48,6 +53,7 @@ watchEffect(() => {
         :side-collapsed-width="layout.sideCollapsedWidth"
         v-model:collapsed="layout.collapsed"
         :options="menuOptions"
+        :active="active"
     >
       <template #headerRight>
         <RightContent/>

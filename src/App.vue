@@ -3,6 +3,7 @@
 const appStore = useAppStore();
 const {layoutTheme} = storeToRefs(appStore);
 useAutoDark();
+useMenuStateProvider()
 </script>
 
 <template>

@@ -1,7 +1,15 @@
-import {UserAccountLoginParams, userGetInfoApi, UserInfo, userLoginApi, UserMobileLoginParams} from "../api/user.ts";
+import {
+    UserAccountLoginParams,
+    userGetInfoApi,
+    UserInfo,
+    userLoginApi,
+    UserMobileLoginParams,
+} from "../api/user.ts";
 import router from "../routes/index"
 import {RouteRecordRaw} from "vue-router";
 import dynamicRoutes, {rootRouter} from "../routes/dynamic-routes.ts";
+import {generateRoute} from "../routes/generate-route.ts";
+import {generateMenu} from "../routes/generate-mute.ts";
 
 export const useUserStore = defineStore('user', () => {
     const userInfo = ref<UserInfo>();
@@ -54,6 +62,17 @@ export const useUserStore = defineStore('user', () => {
         })
     }
 
+    // 后端路由方案
+    const generateDynamicRoutes = async () => {
+        const routeData = await generateRoute()
+        if (routeData) {
+            routerRecords.value = routeData.children
+        }
+        return routeData
+    }
+    // 动态生成侧边栏选项
+    const menuData = computed(() => generateMenu(routerRecords.value))
+
     return {
         userInfo,
         token,
@@ -62,7 +81,9 @@ export const useUserStore = defineStore('user', () => {
         login,
         getUserInfo,
         logout,
-        generateRoutes
+        generateRoutes,
+        generateDynamicRoutes,
+        menuData
     }
 
 })

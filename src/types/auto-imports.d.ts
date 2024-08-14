@@ -222,6 +222,8 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
+  const useMenuStateInject: typeof import('../composables/menu-states')['useMenuStateInject']
+  const useMenuStateProvider: typeof import('../composables/menu-states')['useMenuStateProvider']
   const useMessage: typeof import('naive-ui')['useMessage']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']

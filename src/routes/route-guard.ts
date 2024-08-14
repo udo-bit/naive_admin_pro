@@ -2,9 +2,7 @@ import router from './index'
 import {AxiosError} from "axios";
 
 export const allowRoutes = ['/404', '/401', '/500', '/403', '/error']
-
 export const loginRoute = '/login'
-
 export const allowRouteHasLoin = [...allowRoutes, loginRoute]
 
 router.beforeEach(async (to, _from, next) => {
@@ -27,7 +25,9 @@ router.beforeEach(async (to, _from, next) => {
             // 如果用户信息不存在，那么就需要获取用户信息
             try {
                 await userStore.getUserInfo()
-                const routerRecord = await userStore.generateRoutes()
+                // const routerRecord = await userStore.generateRoutes()
+                // 后端动态路由
+                const routerRecord = await userStore.generateDynamicRoutes()
                 // console.log(router.getRoutes())
                 router.addRoute(routerRecord)
                 // console.log(router.getRoutes())
@@ -45,7 +45,6 @@ router.beforeEach(async (to, _from, next) => {
                     return
                 }
             } catch (e) {
-
                 if (e instanceof AxiosError) {
                     if (e.response?.status === 401)
                         return
