@@ -4,6 +4,7 @@
 <template>
   <div>
     workspace
+    <n-input type="text"/>
   </div>
 </template>
 

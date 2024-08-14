@@ -20,7 +20,6 @@ const getComponent = (component?: string) => {
     if (component in defaultRoutes)
         return defaultRoutes[component]
 
-    console.log(modules)
     return (modules as Record<string, any>)[component]
 }
 

@@ -7,7 +7,6 @@ import SideIcon from "../layouts/side-menu/side-icon.vue";
 export const generateMenu = (routes: RouteRecordRaw[]): MenuOption[] => {
     const menus: MenuOption[] = []
     for (const route of routes) {
-        console.log(route)
         const currentMenu: MenuOption = {
             key: route.path,
             label: () => h(SideTitle, {route}),
@@ -15,7 +14,6 @@ export const generateMenu = (routes: RouteRecordRaw[]): MenuOption[] => {
         if (route.children && route.children.length > 0)
             currentMenu.children = generateMenu(route.children)
         if (route?.meta?.icon) {
-            console.log('icon', route.meta.icon)
             // @ts-ignore
             currentMenu.icon = () => h(SideIcon, {icon: route?.meta.icon})
         }
