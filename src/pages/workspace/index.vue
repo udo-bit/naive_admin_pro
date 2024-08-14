@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  workspace
+  <div>
+    workspace
+  </div>
 </template>
 
 <style scoped>

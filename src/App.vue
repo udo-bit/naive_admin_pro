@@ -4,6 +4,7 @@ const appStore = useAppStore();
 const {layoutTheme} = storeToRefs(appStore);
 useAutoDark();
 useMenuStateProvider()
+useMultiTabProvider()
 </script>
 
 <template>

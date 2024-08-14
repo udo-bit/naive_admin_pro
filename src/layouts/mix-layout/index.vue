@@ -59,7 +59,7 @@ defineEmits(['update:collapsed', 'update:active', 'update:expandedKeys'])
         />
 
       </LayoutSider>
-      <LayoutContent content-style="padding: 24px;">
+      <LayoutContent content-style="">
         <slot/>
       </LayoutContent>
     </n-layout>

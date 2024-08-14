@@ -9,6 +9,8 @@ import SettingDrawer from "~/layouts/setting-drawer/index.vue";
 import RightContent from "~/layouts/base-layout/right-content.vue";
 // import {menuOptions} from "~/layouts/composables/menu-data.ts";
 import {useUserStore} from "~/stores/user.ts";
+import MultiTab from "~/layouts/multi-tab/index.vue";
+import WrapContent from "~/layouts/base-layout/wrap-content.vue";
 
 const appStore = useAppStore();
 const {layout, visible, layoutList, layoutStyleList} = storeToRefs(appStore);
@@ -17,6 +19,7 @@ const {isMobile, isPad, isDesktop} = useQueryBreakpoints();
 const userStore = useUserStore();
 const menuOptions = computed(() => userStore.menuData);
 const {active} = useMenuStateInject()
+
 
 watchEffect(() => {
   if (isDesktop.value) {
@@ -41,7 +44,7 @@ watchEffect(() => {
     <template #headerRight>
       <RightContent/>
     </template>
-    <router-view></router-view>
+    <WrapContent/>
   </MobileLayout>
   <template v-else>
     <MixLayout
@@ -58,7 +61,7 @@ watchEffect(() => {
       <template #headerRight>
         <RightContent/>
       </template>
-      <router-view></router-view>
+      <WrapContent/>
     </MixLayout>
     <SideLayout
         v-if="layout.layout==='side'"
@@ -73,8 +76,7 @@ watchEffect(() => {
       <template #headerRight>
         <RightContent/>
       </template>
-
-      <router-view></router-view>
+      <WrapContent/>
     </SideLayout>
 
     <TopLayout
@@ -86,7 +88,7 @@ watchEffect(() => {
       <template #headerRight>
         <RightContent/>
       </template>
-      <router-view></router-view>
+      <WrapContent/>
     </TopLayout>
   </template>
   <SettingDrawer

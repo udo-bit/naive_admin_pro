@@ -14,11 +14,13 @@ const defaultRoutes: Record<string, any> = {
 }
 
 const getComponent = (component?: string) => {
+
     if (!component)
         return defaultRoutes.BlankView
     if (component in defaultRoutes)
         return defaultRoutes[component]
 
+    console.log(modules)
     return (modules as Record<string, any>)[component]
 }
 
@@ -34,7 +36,7 @@ const generator = (menuInfo: MenuInfo[], pid?: number | string): RouteRecordRaw[
         // 如果有pid,从menuInfo中过滤出有pid的item
         currentMenus = menuInfo.filter(item => item.pid === pid)
     }
-    
+
     // 遍历所有item
     for (const menuItem of currentMenus) {
 
