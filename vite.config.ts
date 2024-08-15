@@ -5,12 +5,15 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import {NaiveUiResolver} from "unplugin-vue-components/resolvers";
 import path from "path";
+// vue jsx 插件
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig(({mode}) => {
     const env = loadEnv(mode, process.cwd())
     return {
         plugins: [
             vue(),
+            vueJsx(),
             Unocss(),
             AutoImport({
                 imports: [

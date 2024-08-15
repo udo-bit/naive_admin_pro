@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// @ts-ignore
 import ProTable from "~/components/pro-table/index.tsx";
 
 </script>

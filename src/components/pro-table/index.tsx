@@ -1,9 +1,15 @@
+import QueryForm from "./query-form";
+import BaseTable from "./base-table";
+
 const proTable = defineComponent({
-    name: 'ProTable',
+    name: "proTable",
     setup() {
-        return () => {
-            return "hello,world"
-        }
+        return () => (
+            <div>
+                <QueryForm/>
+                <BaseTable/>
+            </div>
+        )
     }
 })
 

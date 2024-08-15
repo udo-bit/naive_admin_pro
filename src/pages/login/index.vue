@@ -3,7 +3,6 @@ import locales from "~/locales"
 import logo from "~/assets/vue.svg"
 import {GithubOutlined, LockOutlined, MobileOutlined, UserOutlined} from '@vicons/antd'
 import {BlankLayout} from "~/layouts"
-import {useUserStore} from "~/stores/user.ts";
 import {useAccountLogin} from "~/pages/login/composables/account-login.ts";
 import {useMobileLogin} from './composables/mobile-login'
 
