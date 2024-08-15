@@ -1,9 +1,9 @@
 const queryForm = defineComponent({
     name: 'queryForm',
     setup() {
-
+        const prefixCls = 'pro-table-query-form'
         return () => (
-            <div>queryForm</div>
+            <div class={prefixCls}>queryForm</div>
         )
     }
 })
