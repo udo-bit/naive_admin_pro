@@ -1,22 +1,25 @@
 import {NTree} from "naive-ui";
+import {useProTableState} from "../../../context.ts";
 
-export default () => {
-    const treeData = [
-        {
-            label: 'Name',
-            key: 'name'
-        },
-        {
-            label: 'Age',
-            key: 'age'
+export default defineComponent({
+    name: 'settingBody',
+    setup() {
+        const state = useProTableState()
+        return () => {
+            const treeProps = {
+                "onUpdate:checkedKeys": state.settingColumn?.handleCheckedKeys
+            }
+            console.log(state.settingColumn.treeData.value)
+            return <div class={'py-6px'}>
+                <NTree
+                    {...treeProps}
+                    checkedKeys={state.settingColumn?.checkedKeys.value}
+                    checkable
+                    selectable={false}
+                    data={state.settingColumn?.treeData?.value}
+                />
+
+            </div>
         }
-    ]
-    return <div class={'py-6px'}>
-        <NTree
-            checkable
-            selectable={false}
-            data={treeData}
-        />
-
-    </div>
-}
+    }
+})
