@@ -9,7 +9,6 @@ export default defineComponent({
             const treeProps = {
                 "onUpdate:checkedKeys": state.settingColumn?.handleCheckedKeys
             }
-            console.log(state.settingColumn.treeData.value)
             return <div class={'py-6px'}>
                 <NTree
                     {...treeProps}

@@ -174,7 +174,6 @@ const data = ref([
 ])
 const handleRequest = async (params: any) => {
   let res = await systemMenuApi(params)
-  console.log(res.data)
   return {
     ...res.data
   }

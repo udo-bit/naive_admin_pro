@@ -22,7 +22,7 @@ const proTable = defineComponent({
             const pagination = state?.requestState?.formatPagination() ?? props?.pagination
             return (
                 <NEl tag={'div'}>
-                    <QueryForm/>
+                    <QueryForm columns={props.columns}/>
                     <BaseTable
                         {...props}
                         {...state?.requestState?.handleProps}
