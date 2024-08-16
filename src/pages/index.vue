@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 // @ts-ignore
 import ProTable from "~/components/pro-table/index.tsx";
+import {systemMenuApi} from "~/api/menu.ts";
 
 const columns = ref<any[]>([
   {
@@ -171,10 +172,28 @@ const data = ref([
     icon: 'LinkOutlined'
   }
 ])
+const handleRequest = async (params: any) => {
+  let res = await systemMenuApi(params)
+  console.log(res.data)
+  return {
+    ...res.data
+  }
+}
 </script>
 
 <template>
-  <ProTable :columns="columns" :data="data" :scroll-x="1800" :options="{reload:true,setting:true}"/>
+  <ProTable
+      :columns="columns"
+      :data="data"
+      :scroll-x="1800"
+      :options="{reload:true,setting:true}"
+      :request="handleRequest"
+      :params="{text:123}"
+      :pagination="{
+        showSizePicker: true,
+        pageSizes: [10, 20, 50, 100]
+      }"
+  />
 </template>
 
 <style scoped>

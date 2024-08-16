@@ -11,23 +11,31 @@ const proTable = defineComponent({
         ...proTableProps
     },
     setup(props, {slots}) {
-        const basicTableSlots = {
-            empty: slots.empty,
-            loading: slots.loading,
-            headerTitle: slots.headerTitle,
-            toolbarRender: slots.toolbarRender,
+        const state = useProTableProvider(props)
+        return () => {
+            const basicTableSlots = {
+                empty: slots.empty,
+                loading: slots.loading,
+                headerTitle: slots.headerTitle,
+                toolbarRender: slots.toolbarRender,
+            }
+            const pagination = state?.requestState?.formatPagination() ?? props?.pagination
+            return (
+                <NEl tag={'div'}>
+                    <QueryForm/>
+                    <BaseTable
+                        {...props}
+                        {...state?.requestState?.handleProps}
+                        pagination={pagination}
+                        v-slots={basicTableSlots}
+
+                    />
+                </NEl>
+            )
         }
-        useProTableProvider(props)
-        return () => (
-            <NEl tag={'div'}>
-                <QueryForm/>
-                <BaseTable
-                    {...props}
-                    v-slots={basicTableSlots}
-                />
-            </NEl>
-        )
     }
+
+
 })
 
 export default proTable
