@@ -5,6 +5,20 @@ export const queryFormProps = {
     columns: {
         type: Array as PropType<ProTableColumn[]>,
         default: () => [],
+    },
+    onSearch: {
+        type: Function as PropType<(params: any) => void>,
+        default: () => {
+        },
+    },
+    onReset: {
+        type: Function as PropType<(params: any) => void>,
+        default: () => {
+        },
+    },
+    loading: {
+        type: Boolean as PropType<boolean>,
+        default: false,
     }
 };
 

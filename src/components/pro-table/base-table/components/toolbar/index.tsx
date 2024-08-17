@@ -5,7 +5,7 @@ import {useProTableState} from "../../../context.ts";
 
 const toolbar = defineComponent({
     name: "toolbar",
-    setup() {
+    setup(_, {slots}) {
         const {options} = useProTableState()
         const renderToolbar = () => {
             if (options.value === false) {
@@ -18,10 +18,21 @@ const toolbar = defineComponent({
                 </NSpace>
             )
         }
+        const renderHeaderTitle = () => {
+            if (slots.headerTitle) {
+                return slots.headerTitle()
+            }
+            return "高级表格"
+        }
+
         return () => (
-            <div class={'flex justify-between items-center pb-16px'}>
-                <div class={'font-700 text-xl '}>高级表格</div>
-                {renderToolbar()}
+            <div class={'flex justify-between  pb-16px'}>
+                <div class={'font-700 text-xl '}>{renderHeaderTitle()}</div>
+                <div class={'flex items-center justify-between gap-4'}>
+                    {slots.toolbarRender?.()}
+                    {renderToolbar()}
+                </div>
+
 
             </div>
         )

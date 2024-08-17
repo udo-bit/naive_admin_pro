@@ -8,6 +8,7 @@ const tableState = (props: ProTableProps) => {
     const options = computed(() => props.options);
     const settingColumn = useSettingColumn(props)
     const requestState = useRequestState(props)
+    
     return {
         columns,
         options,

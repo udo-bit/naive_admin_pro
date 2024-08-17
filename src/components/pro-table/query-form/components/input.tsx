@@ -9,11 +9,11 @@ export default defineComponent({
     },
     setup(props) {
         return () => {
-            const {value, mode} = props;
+            const {value, mode, ...restProps} = props;
             if (mode === 'read') return value;
             return (
                 <NInput
-                    {...props}
+                    {...restProps}
                     value={value}
                 />
             )

@@ -192,7 +192,17 @@ const handleRequest = async (params: any) => {
         showSizePicker: true,
         pageSizes: [10, 20, 50, 100]
       }"
-  />
+  >
+    <template #headerTitle>我是自定义标题</template>
+    <template #toolbarRender>
+      <div class="flex">
+        <NButton tyep="primary" size="small">
+          新增
+        </NButton>
+      </div>
+
+    </template>
+  </ProTable>
 </template>
 
 <style scoped>

@@ -10,7 +10,7 @@ export default () => {
         {type: 'render', key: 'body', render: () => <div><SettingBody/></div>},
     ]
     const slots = {
-        trigger: () => <div>
+        trigger: () => <div class={'flex'}>
             <NDropdown trigger={"click"} options={dropdownOptions}>
                 <NIcon size={16} class={'cursor-pointer'}>
                     <SettingOutlined/>

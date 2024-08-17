@@ -20,6 +20,7 @@ export default defineComponent({
                 opt.push({
                     label: props.valueEnum[key].label,
                     key: key,
+                    value: key
                 })
             }
             return opt
@@ -48,6 +49,7 @@ export default defineComponent({
             }
             return (
                 <NSelect
+                    {...props}
                     value={value}
                     options={options.value}
                 ></NSelect>

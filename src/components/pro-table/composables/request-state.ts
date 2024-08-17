@@ -9,6 +9,7 @@ const useRequestState = (props: ProTableProps) => {
 
     const data = ref<Record<string, any>>()
     const loading = ref(false)
+    let storeParams: Record<string, any> = {}
 
     const pagination = ref<Partial<PaginationProps>>({
         page: 1,
@@ -23,6 +24,7 @@ const useRequestState = (props: ProTableProps) => {
                     page: pagination.value.page ?? 1,
                     pageSize: pagination.value.pageSize ?? 10,
                     ...props.params,
+                    ...storeParams,
                     ...params
                 }
             )
@@ -70,10 +72,28 @@ const useRequestState = (props: ProTableProps) => {
         })
     })
 
+    const querySearch = async (params: Record<string, any>) => {
+        const queryParams = {
+            ...params,
+            page: 1
+        }
+        try {
+            storeParams = {}
+            await handleRequest(queryParams)
+            storeParams = params
+            pagination.value.page = 1
+        } catch (e) {
+
+        }
+    }
+
+
     return {
         formatPagination,
         handleProps,
-        handleRequest
+        handleRequest,
+        querySearch,
+        loading,
     }
 }
 
